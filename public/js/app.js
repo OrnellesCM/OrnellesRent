@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:3000/api';
+const API_BASE_URL = '/api';
 const contentArea = document.getElementById('content-area');
 const navLinks = document.querySelectorAll('.nav-link');
 
@@ -77,7 +77,7 @@ async function renderVeiculosPage() {
                 <td>${v.marca}</td>
                 <td>${v.modelo}</td>
                 <td>${v.ano}</td>
-                <td>${v.preco_diaria.toFixed(2)}</td>
+                <td>${Number(v.preco_diaria).toFixed(2)}</td>
                 <td>${v.categoria.toUpperCase()}</td>
                 <td>${statusBadge}</td>
                 <td>

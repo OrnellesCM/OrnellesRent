@@ -12,6 +12,6 @@ const connection = mysql.createPool({
   queueLimit: 0
 });
 
-console.log('Conexão com MySQL configurada com sucesso!');
+console.log('Estabelecida conexão com o banco!');
 
 module.exports = connection;

@@ -7,7 +7,7 @@ const clienteRoutes = require('./src/routes/clienteRoutes');
 const locacaoRoutes = require('./src/routes/locacaoRoutes');
 
 const app = express();
-const PORT = 3000;
+const PORT = 80;
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
