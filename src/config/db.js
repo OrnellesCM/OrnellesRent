@@ -1,9 +1,7 @@
-// src/config/db.js
 
 const mysql = require('mysql2/promise');
 require('dotenv').config();
 
-// Configuração de conexão do MySQL
 const connection = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,

@@ -1,8 +1,6 @@
-// src/controllers/clienteController.js
 
 const db = require('../config/db');
 
-// --- 1. CRUD: Cadastrar Cliente
 exports.cadastrarCliente = async (req, res) => {
     const { nome_completo, email, telefone, endereco, sexo, data_nascimento } = req.body;
     
@@ -28,7 +26,6 @@ exports.cadastrarCliente = async (req, res) => {
     }
 };
 
-// --- 2. CRUD: Listar Todos os Clientes
 exports.listarClientes = async (req, res) => {
     try {
         const [rows] = await db.query('SELECT id, nome_completo, email, telefone, data_nascimento FROM clientes ORDER BY nome_completo ASC');
@@ -39,7 +36,6 @@ exports.listarClientes = async (req, res) => {
     }
 };
 
-// --- 3. CRUD: Modificar Cliente por ID
 exports.modificarCliente = async (req, res) => {
     const { id } = req.params;
     const { nome_completo, email, telefone, endereco, sexo, data_nascimento } = req.body;
@@ -61,12 +57,10 @@ exports.modificarCliente = async (req, res) => {
     }
 };
 
-// --- 4. CRUD: Excluir Cliente por ID
 exports.excluirCliente = async (req, res) => {
     const { id } = req.params;
     
     try {
-        // Observação: É ideal verificar se o cliente tem locações ATIVAS antes de excluir.
         const [result] = await db.query('DELETE FROM clientes WHERE id = ?', [id]);
         
         if (result.affectedRows === 0) {
@@ -79,8 +73,6 @@ exports.excluirCliente = async (req, res) => {
     }
 };
 
-
-// --- 5. FUNCIONALIDADE: Mostrar Histórico de Locação
 exports.mostrarHistorico = async (req, res) => {
     const { id } = req.params;
     
@@ -105,8 +97,6 @@ exports.mostrarHistorico = async (req, res) => {
         const [locacoes] = await db.query(sqlHistorico, [id]);
         
         if (locacoes.length === 0) {
-            // Verifica se o cliente existe. Se não for encontrado, você pode adicionar uma checagem.
-            // Aqui, assumimos que o cliente existe, mas não tem histórico.
             return res.status(200).json({ message: 'Nenhuma locação encontrada para este cliente.', historico: [] });
         }
 
